@@ -173,11 +173,13 @@ public class pathData implements GraphIndex {
                 "\n캠퍼스 내의 강의실 간 최단거리 계산\n##다익스트라 알고리즘##" 
             );
         System.out.println(
-            "\n입력 가능 건물 리스트입니다\n반드시 문자열로 입력해주세요!\n"
+            "\n입력 가능 건물 리스트입니다\n반드시 숫자로 입력해주세요!\n"
         );
-
+        
+        int index = 1;
         for (Map.Entry<Integer, String> entry : buildingNodeMap.entrySet()) {
-            System.out.printf("%s \n", entry.getValue());
+            System.out.printf("%d) %s \n", index, entry.getValue());
+            index++;
         }
         System.out.println("");
 }

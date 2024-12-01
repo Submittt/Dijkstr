@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
-// import java.util.InputMismatchException;
+import java.util.InputMismatchException;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 import java.util.List;
@@ -12,6 +12,8 @@ import java.util.Map.Entry;
 
 public class Dijkstra {
 
+    static int startNode;
+    static int endNode;
 
     public static List<Integer> getPath(int[] previous, int endNode) {
         // 이전 경로 정보 저장 배열, 도착지점 노드번호 입력
@@ -36,22 +38,32 @@ public class Dijkstra {
         return pathList;
     } 
 
+    
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in , "EUC-KR");
 
-                pathData.showInformation();
+        while (true) {
+            
+            pathData.showInformation();
 
+            try {
                 System.out.printf("출발지를 입력해주세요: ");
-                String startNode_str = sc.nextLine();
-                int startNode = pathData.parseStringToInt(startNode_str);
-    
+                startNode = sc.nextInt();
+
                 System.out.printf("도착지를 입력해주세요 : ");
-                String endNode_str = sc.nextLine(); 
-                int endNode = pathData.parseStringToInt(endNode_str);
-        
-                sc.close();
-        
+                endNode = sc.nextInt(); 
+
+                break;
+    
+            } catch (InputMismatchException e) {
+                System.out.println("\n문자열은 입력할 수 없습니다. 정수로 다시 입력해주세요");
+                sc.nextLine();
+                // 예외처리 및 버퍼 클리어링
+            }
+        }
+        sc.close();
+
 
         int vertaxCount = 25;
         int buildingCount = 8;
