@@ -38,9 +38,8 @@ public class Dijkstra {
 
     public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in , "UTF-8");
+        Scanner sc = new Scanner(System.in , "EUC-KR");
 
-        
                 pathData.showInformation();
 
                 System.out.printf("출발지를 입력해주세요: ");

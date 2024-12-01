@@ -8,38 +8,38 @@ import java.util.LinkedHashMap;
 
 public class pathData implements GraphIndex {
 
-    public static Map<String, Integer> buildingNodeMap = new LinkedHashMap<>();  
+    public static Map<Integer, String> buildingNodeMap = new LinkedHashMap<>();  
 
         static {
-        buildingNodeMap.put("본관", 1);
-        buildingNodeMap.put("2&4호관", 2);
-        buildingNodeMap.put("5호관", 3);
-        buildingNodeMap.put("6&9호관", 4);
-        buildingNodeMap.put("하이테크", 5);
-        buildingNodeMap.put("나빌레관", 6);
-        buildingNodeMap.put("미융대관", 7);
+        buildingNodeMap.put(1, "본관");
+        buildingNodeMap.put(2, "2&4호관");
+        buildingNodeMap.put(3, "5호관");
+        buildingNodeMap.put(4, "6&9호관");
+        buildingNodeMap.put(5, "하이테크");
+        buildingNodeMap.put(6, "나빌레관");
+        buildingNodeMap.put(7, "미융대관");
         }
     
-    public static Map<String, Integer> junctionNodeMap = new LinkedHashMap<>();  
+    public static Map<Integer, String> junctionNodeMap = new LinkedHashMap<>();  
 
     static {
-        junctionNodeMap.put("교차로_1", 8);
-        junctionNodeMap.put("교차로_2", 9);
-        junctionNodeMap.put("교차로_3", 10);
-        junctionNodeMap.put("교차로_4", 11);
-        junctionNodeMap.put("교차로_5", 12);
-        junctionNodeMap.put("교차로_6", 13);
-        junctionNodeMap.put("교차로_7", 14);
-        junctionNodeMap.put("교차로_8", 15);
-        junctionNodeMap.put("교차로_9", 16);
-        junctionNodeMap.put("교차로_10", 17);
-        junctionNodeMap.put("교차로_11", 18);
-        junctionNodeMap.put("교차로_12", 19);
-        junctionNodeMap.put("교차로_13", 20);
-        junctionNodeMap.put("교차로_14", 21);
-        junctionNodeMap.put("교차로_15", 22);
-        junctionNodeMap.put("교차로_16", 23);
-        junctionNodeMap.put("교차로_17", 24);
+        junctionNodeMap.put(8, "교차로_1");
+        junctionNodeMap.put(9, "교차로_2");
+        junctionNodeMap.put(10, "교차로_3");
+        junctionNodeMap.put(11, "교차로_4");
+        junctionNodeMap.put(12, "교차로_5");
+        junctionNodeMap.put(13, "교차로_6");
+        junctionNodeMap.put(14, "교차로_7");
+        junctionNodeMap.put(15, "교차로_8");
+        junctionNodeMap.put(16, "교차로_9");
+        junctionNodeMap.put(17, "교차로_10");
+        junctionNodeMap.put(18, "교차로_11");
+        junctionNodeMap.put(19, "교차로_12");
+        junctionNodeMap.put(20, "교차로_13");
+        junctionNodeMap.put(21, "교차로_14");
+        junctionNodeMap.put(22, "교차로_15");
+        junctionNodeMap.put(23, "교차로_16");
+        junctionNodeMap.put(24, "교차로_17");
     }
 
     
@@ -146,20 +146,23 @@ public class pathData implements GraphIndex {
     }
 
     public static int parseStringToInt(String inputValue) {
-        Integer buildingNumber = buildingNodeMap.get(inputValue);
-        return buildingNumber.intValue();
+        for (Map.Entry<Integer, String> entry : buildingNodeMap.entrySet()) {
+            if (entry.getValue().equals(inputValue)) {
+                return entry.getKey();
+            }
+        } return 0;
     }
 
     public static String parseIntToString(int inputValue) {
-        for (Map.Entry<String, Integer> entry : buildingNodeMap.entrySet()) {
-            if (entry.getValue() == inputValue) {
-                return entry.getKey();
+        for (Map.Entry<Integer, String> entry : buildingNodeMap.entrySet()) {
+            if (entry.getKey() == inputValue) {
+                return entry.getValue();
             }
         }
         
-        for (Map.Entry<String, Integer> entry : junctionNodeMap.entrySet()) {
-            if (entry.getValue() == inputValue) {
-                return entry.getKey();
+        for (Map.Entry<Integer, String> entry : junctionNodeMap.entrySet()) {
+            if (entry.getKey() == inputValue) {
+                return entry.getValue();
             }
         }
         return null;
@@ -173,8 +176,8 @@ public class pathData implements GraphIndex {
             "\n입력 가능 건물 리스트입니다\n반드시 문자열로 입력해주세요!\n"
         );
 
-        for (String key : buildingNodeMap.keySet()) {
-            System.out.printf("%s \n", key);
+        for (Map.Entry<Integer, String> entry : buildingNodeMap.entrySet()) {
+            System.out.printf("%s \n", entry.getValue());
         }
         System.out.println("");
 }
